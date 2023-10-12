@@ -191,7 +191,7 @@ describe('Searching restaurants', () => {
       searchRestaurants('resto a');
     });
 
-    it('should not show any movie', (done) => {
+    it('should not show any restaurant', (done) => {
       document.getElementById('restaurant-search-container')
         .addEventListener('restaurants:searched:updated', () => {
           expect(document.querySelectorAll('.restaurant').length).toEqual(0);
@@ -201,6 +201,26 @@ describe('Searching restaurants', () => {
       favoriteRestaurants.searchRestaurants.mockImplementation((query) => []);
 
       searchRestaurants('film a');
+    });
+
+    it('should show - when the restaurant returned does not contain a name', (done) => {
+      document.getElementById('restaurant-search-container')
+        .addEventListener('restaurants:searched:updated', () => {
+          const restaurantNames = document.querySelectorAll('.restaurant__name');
+          expect(restaurantNames.item(0).textContent).toEqual('-');
+
+          done();
+        });
+
+      favoriteRestaurants.searchRestaurants.mockImplementation((query) => {
+        if (query === 'resto a') {
+          return [{ id: 444 }];
+        }
+
+        return [];
+      });
+
+      searchRestaurants('resto a');
     });
   });
 });

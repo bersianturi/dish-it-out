@@ -1,3 +1,7 @@
+const _showFoundRestaurants = (restaurants, view) => {
+  view.showRestaurants(restaurants);
+};
+
 class FavoriteRestaurantSearchInitiator {
   constructor({ favoriteRestaurants, view }) {
     this._favoriteRestaurants = favoriteRestaurants;
@@ -8,7 +12,7 @@ class FavoriteRestaurantSearchInitiator {
 
   _listenToSearchRequestByUser() {
     this._view.runWhenUserIsSearching((latestQuery) => {
-      this._searchMovies(latestQuery);
+      this._searchRestaurants(latestQuery);
     });
   }
 
@@ -22,7 +26,7 @@ class FavoriteRestaurantSearchInitiator {
       foundRestaurant = await this._favoriteRestaurants.getAllRestaurants();
     }
 
-    this._showFoundRestaurants(foundRestaurant);
+    _showFoundRestaurants(foundRestaurant, this._view);
   }
 
   _showFoundRestaurants(restaurants) {

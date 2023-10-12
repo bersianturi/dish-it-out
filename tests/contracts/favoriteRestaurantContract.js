@@ -33,7 +33,7 @@ const itActsAsFavoriteRestaurantModel = (favoriteRestaurant) => {
     expect(await favoriteRestaurant.getAllRestaurant()).toEqual([{ id: 2 }, { id: 3 }]);
   });
 
-  it('should handle request to remove a restaurant even though the movie has not been added', async () => {
+  it('should handle request to remove a restaurant even though the restaurant has not been added', async () => {
     favoriteRestaurant.putRestaurant({ id: 1 });
     favoriteRestaurant.putRestaurant({ id: 2 });
     favoriteRestaurant.putRestaurant({ id: 3 });
