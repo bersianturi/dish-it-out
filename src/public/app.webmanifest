@@ -1,6 +1,6 @@
 {
   "id": "dishitout",
-  "start_url": "./index.html?launcher=true",
+  "start_url": "./index.html",
   "name": "DishItOut!",
   "short_name": "DishItOut!",
   "description": "Bingung makan dimana? Cari disini solusinya!",
