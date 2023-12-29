@@ -23,32 +23,14 @@ class FavoriteRestaurantSearchInitiator {
     if (this.latestQuery.length > 0) {
       foundRestaurant = await this._favoriteRestaurants.searchRestaurants(this._latestQuery);
     } else {
-      foundRestaurant = await this._favoriteRestaurants.getAllRestaurants();
+      foundRestaurant = await this._favoriteRestaurants.getAllRestaurant();
     }
 
     _showFoundRestaurants(foundRestaurant, this._view);
   }
 
   _showFoundRestaurants(restaurants) {
-    let html;
-    if (restaurants.length > 0) {
-      html = restaurants.reduce(
-        (carry, restaurant) => carry.concat(`
-          <li class="restaurant">
-            <span class="restaurant__name">${restaurant.name || '-'}</span>
-          </li>
-        `),
-        '',
-      );
-    } else {
-      html = '<div class="restaurant__not__found">Restoran tidak ditemukan</div>';
-    }
-
-    document.querySelector('.restaurants').innerHTML = html;
-
-    document
-      .getElementById('restaurant-search-container')
-      .dispatchEvent(new Event('restaurants:searched:updated'));
+    this._view.showFavoriteRestaurants(restaurants);
   }
 
   get latestQuery() {

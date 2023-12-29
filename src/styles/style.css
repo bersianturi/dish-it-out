@@ -98,7 +98,7 @@ nav {
 
 .jumbotron {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
-    url("../public/images/heros/hero-image_2.jpg");
+    url("../public/images/heros/hero-image-large.jpg");
   background-size: cover;
   background-position: center;
   text-align: center;
@@ -321,9 +321,41 @@ main {
   cursor: pointer;
 }
 
+.query-box {
+  position: relative;
+  height: 65px;
+  max-width: 900px;
+  width: 100%;
+  background-color: #f3f3f3;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  margin-bottom: 3rem;
+}
+
+.query-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  padding: 0 155px 0 65px;
+  background-color: transparent;
+}
+
+.restaurant-item__not__found {
+  text-align: center;
+  grid-column-start: 2;
+}
+
 footer {
   padding: 1.4em 1em;
   color: #f5f5f5;
   background-color: #0f1626;
   text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }

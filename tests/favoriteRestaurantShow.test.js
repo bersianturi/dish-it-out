@@ -1,15 +1,16 @@
+/* eslint-disable no-new */
 import {
   beforeEach, describe, expect, it, jest,
 } from '@jest/globals';
-import FavoriteRestaurantSearchView from '../src/scripts/views/pages/liked-restaurant/favorite-restaurant-search-view';
+import FavoriteRestaurantView from '../src/scripts/views/pages/liked-restaurant/favorite-restaurant-view';
 import FavoriteRestaurantShowInitiator from '../src/scripts/views/pages/liked-restaurant/favorite-restaurant-show-initiator';
 
 describe('Showing all favorite restaurant', () => {
   let view;
 
   const renderTemplate = () => {
-    view = new FavoriteRestaurantSearchView();
-    document.body.innerHTML = view.getFavoriteRestaurantTemplate();
+    view = new FavoriteRestaurantView();
+    document.body.innerHTML = view.getTemplate();
   };
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('Showing all favorite restaurant', () => {
   describe('When no restaurants have been liked', () => {
     it('should render the information that no restaurants have been liked', () => {
       const favoriteRestaurants = {
-        getAllRestaurants: jest.fn().mockImplementation(() => []),
+        getAllRestaurant: jest.fn().mockImplementation(() => []),
       };
 
       const initiator = new FavoriteRestaurantShowInitiator({
@@ -35,7 +36,7 @@ describe('Showing all favorite restaurant', () => {
 
     it('should ask for the favorite restaurant', () => {
       const favoriteRestaurants = {
-        getAllRestaurants: jest.fn().mockImplementation(() => []),
+        getAllRestaurant: jest.fn().mockImplementation(() => []),
       };
 
       new FavoriteRestaurantShowInitiator({
@@ -43,18 +44,18 @@ describe('Showing all favorite restaurant', () => {
         favoriteRestaurants,
       });
 
-      expect(favoriteRestaurants.getAllRestaurants).toHaveBeenCalledTimes(1);
+      expect(favoriteRestaurants.getAllRestaurant).toHaveBeenCalledTimes(1);
     });
 
     it('should show the information that no movies have been liked', (done) => {
-      document.getElementById('restaurants').addEventListener('restaurants:updated', () => {
+      document.getElementById('restaurant-list').addEventListener('restaurants:updated', () => {
         expect(document.querySelectorAll('.restaurant-item__not__found').length).toEqual(1);
 
         done();
       });
 
       const favoriteRestaurants = {
-        getAllRestaurants: jest.fn().mockImplementation(() => []),
+        getAllRestaurant: jest.fn().mockImplementation(() => []),
       };
 
       new FavoriteRestaurantShowInitiator({
@@ -67,7 +68,7 @@ describe('Showing all favorite restaurant', () => {
   describe('When favorite restaurants exist', () => {
     it('should render the restaurants', () => {
       const favoriteRestaurants = {
-        getAllRestaurants: jest.fn().mockImplementation(() => []),
+        getAllRestaurant: jest.fn().mockImplementation(() => []),
       };
 
       const initiator = new FavoriteRestaurantShowInitiator({
@@ -90,7 +91,7 @@ describe('Showing all favorite restaurant', () => {
         },
       ]);
 
-      expect(document.querySelectorAll('.restaurant-item').length).toEqual(2);
+      expect(document.querySelectorAll('.restaurant-list_item').length).toEqual(2);
     });
   });
 });

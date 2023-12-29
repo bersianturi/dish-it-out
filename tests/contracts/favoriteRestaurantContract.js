@@ -1,3 +1,6 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const { async } = require('regenerator-runtime');
 
 const itActsAsFavoriteRestaurantModel = (favoriteRestaurant) => {

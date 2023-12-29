@@ -3,14 +3,14 @@ import CONFIG from '../../globals/config';
 const createRestaurantItemTemplate = (restaurant) => `
   <article class="restaurant-list_item">
     <div class="restaurant-list_item_header">
-      <img src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="Foto restoran ${restaurant.name}" crossorigin="anonymous">
-      <h2><a href="/#/detail/${restaurant.id}">${restaurant.name}</a></h2>
+      <img class="lazyload" data-src="${restaurant.pictureId ? CONFIG.BASE_IMAGE_URL + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}" alt="Foto restoran ${restaurant.name || '-'}" crossorigin="anonymous">
+      <h2 class="restaurant__name"><a href="/#/detail/${restaurant.id}">${restaurant.name || '-'}</a></h2>
     </div>
     <div class="restaurant-list_item_body">
-      <p class="rating"><strong>Rating</strong>: ${restaurant.rating}/5</p>
-      <p class="location"><strong>Lokasi</strong>: ${restaurant.city}</p>
+      <p class="rating"><strong>Rating</strong>: ${restaurant.rating || '-'}/5</p>
+      <p class="location"><strong>Lokasi</strong>: ${restaurant.city || '-'}</p>
       <p class="restaurant-list_item_body_caption">
-        <strong>Deskripsi</strong>: <br> ${restaurant.description?.slice(0, 200)}...
+        <strong>Deskripsi</strong>: <br> ${restaurant.description?.slice(0, 200) || '-'}...
       </p>
       <a class="more-link" href="/#/detail/${restaurant.id}">Lihat selengkapnya</a>
     </div>
@@ -19,7 +19,7 @@ const createRestaurantItemTemplate = (restaurant) => `
 
 const createRestaurantdetailTemplate = (restaurant) => `
   <div class="restaurant-detail-content">
-    <img src="${CONFIG.BASE_IMAGE_URL}/${restaurant.pictureId}" alt="${restaurant.name}" crossorigin="anonymous">
+    <img class="lazyload" src="${CONFIG.BASE_IMAGE_URL}/${restaurant.pictureId}" alt="${restaurant.name}" crossorigin="anonymous">
     <div>
       <h2 class="restaurant-detail-name">${restaurant.name}</h2>
       <div class="restaurant-detail-group">
